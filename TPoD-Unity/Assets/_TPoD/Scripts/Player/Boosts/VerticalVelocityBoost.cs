@@ -6,6 +6,11 @@ namespace Trampoline
 {
     public class VerticalVelocityBoost : MonoBehaviour
     {
-        public float velocity { get; private set; }
+        public Vector3 velocityVector { get; private set; }
+
+        public VerticalVelocityBoost(float velocity)
+        {
+            velocityVector = new Vector3(0f, velocity, 0f);
+        }
     }
 }

@@ -14,5 +14,10 @@ namespace Trampoline
             public const string HORIZONTAL_LOOK_AXIS = "HorizontalLook";
             public const string VERTICAL_LOOK_AXIS = "VerticalLook";
         }
+
+        public class TagConstants
+        {
+            public const string PLAYER = "Player";
+        }
     }
 }

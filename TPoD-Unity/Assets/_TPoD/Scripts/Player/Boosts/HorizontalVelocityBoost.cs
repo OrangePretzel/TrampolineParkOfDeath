@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Trampoline
 {
-    public struct HorizontalVelocityBoost
+    public class HorizontalVelocityBoost
     {
         private float _startingSpeed;
         // Acceleration of the horizontal boost. Usually set this to a negative value in order for the velocity to decrease over time."
@@ -31,7 +31,7 @@ namespace Trampoline
         public bool UpdateVelocity(float deltaTime)
         {
             _currentSpeed += _acceleration * deltaTime;
-            return _currentSpeed <= 0f;
+            return _currentSpeed > 0f;
         }
     }
 }
