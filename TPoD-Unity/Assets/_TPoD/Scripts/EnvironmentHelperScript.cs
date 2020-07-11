@@ -1,6 +1,6 @@
 ﻿using Sirenix.OdinInspector;
+using UnityEditor;
 using UnityEngine;
-using UnityEngine.Analytics;
 
 namespace TPoD
 {
@@ -21,12 +21,12 @@ namespace TPoD
 			}
 		}
 
+		[SerializeField] float _hexagonSize = 2.0f;
 		[Button("Generate Hexagons")]
 		private void GenerateTrampolineHexagon()
 		{
 			// Reference: https://www.redblobgames.com/grids/hexagons/
 			int parkSize = 3;
-			float _hexagonSize = 1.0f;
 
 			float hexWidth = Mathf.Sqrt(3) * _hexagonSize;
 			float hexHeight = 2f * _hexagonSize;
@@ -42,7 +42,6 @@ namespace TPoD
 						0,
 						y * hexHeight * 3f / 4f
 					), Quaternion.identity);
-					trampObj.transform.LookAt(new Vector3(0, -1, 0));
 				}
 		}
 
@@ -60,6 +59,8 @@ namespace TPoD
 
 		private GameObject SpawnTrampoline(Vector3 position, Quaternion rotation)
 		{
+			var x = PrefabUtility.InstantiatePrefab(_trampolinePrefab);
+			var x2 = x as GameObject;
 			var trampObj = Instantiate(_trampolinePrefab, position, rotation, _environmentContainer);
 			return trampObj;
 		}
