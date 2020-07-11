@@ -40,7 +40,7 @@ namespace Trampoline
 
         private void UpdateRotation(float deltaTime)
         {
-            _targetVerticalRotation += _input.GetVerticalLook() * _lookSensitivity;
+            _targetVerticalRotation = Mathf.Clamp(_targetVerticalRotation + (_input.GetVerticalLook() * _lookSensitivity), -90f, 90f);
             _actualVerticalRotation = Mathf.SmoothDamp(_actualVerticalRotation, _targetVerticalRotation, ref _verticalRotationVelocity, _dampValue);
 
             _targetHorizontalRotation += _input.GetHorizontalLook() * _lookSensitivity;

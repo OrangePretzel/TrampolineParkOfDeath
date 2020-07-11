@@ -48,9 +48,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0871cebe3302c214fb4531ca161aad4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _strafeAcceleration: 10
-  _maxStrafeVelocity: 20
+  _strafeSpeed: 20
   _gravityMultiplier: 1
+  _dampingValue: 0.15
 --- !u!114 &4148879100597794443
 MonoBehaviour:
   m_ObjectHideFlags: 0
