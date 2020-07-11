@@ -1,9 +1,12 @@
 using UnityEngine;
 
-public class HelloWorld : MonoBehaviour
+namespace TPoD
 {
-	private void OnEnable()
+	public class HelloWorld : MonoBehaviour
 	{
-		Debug.Log("Hello World!");
+		private void OnEnable()
+		{
+			Debug.Log("Hello World!");
+		}
 	}
 }
