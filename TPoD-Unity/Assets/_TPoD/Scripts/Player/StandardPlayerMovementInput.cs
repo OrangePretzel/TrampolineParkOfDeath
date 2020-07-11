@@ -9,12 +9,12 @@ namespace Trampoline
         /******* Methods *******/
         public float GetHorizontalAxis()
         {
-            return Input.GetAxis(TrampolineConstants.InputConstants.HORIZONTAL_AXIS);
+            return Input.GetAxis(TrampolineConstants.InputConstants.HORIZONTAL_MOVEMENT_AXIS);
         }
 
         public float GetVerticalAxis()
         {
-            return Input.GetAxis(TrampolineConstants.InputConstants.VERTICAL_AXIS);
+            return Input.GetAxis(TrampolineConstants.InputConstants.VERTICAL_MOVEMENT_AXIS);
         }
     }
 }
