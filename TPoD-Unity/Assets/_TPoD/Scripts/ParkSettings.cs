@@ -8,5 +8,6 @@ namespace TPoD
 		public GameObject TrampolinePrefab;
 		public float TrampolineSize = 1.2f;
 		public int ParkSize = 3;
+		public float ParkSizeF = 3.5f;
 	}
 }
