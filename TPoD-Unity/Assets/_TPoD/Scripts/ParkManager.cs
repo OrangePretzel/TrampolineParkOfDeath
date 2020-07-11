@@ -6,6 +6,11 @@ namespace TPoD
 	{
 		private void OnEnable()
 		{
+			SetupPark();
+		}
+
+		private void SetupPark()
+		{
 
 		}
 	}
