@@ -2,7 +2,7 @@
 
 namespace TPoD
 {
-	public class ParkManager : MonoBehaviour
+	public class GameManager : MonoBehaviour
 	{
 		private void OnEnable()
 		{
