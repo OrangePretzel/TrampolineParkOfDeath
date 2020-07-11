@@ -12,6 +12,7 @@ namespace TPoD
 			// Reference: https://www.redblobgames.com/grids/hexagons/
 
 			int parkSize = _parkSettings.ParkSize;
+			float parkSizeF = _parkSettings.ParkSizeF;
 
 			float hexSize = _parkSettings.TrampolineSize;
 			float hexWidth = Mathf.Sqrt(3) * hexSize;
@@ -22,6 +23,9 @@ namespace TPoD
 				{
 					float x = i + (k & 1) / 2f;
 					float y = k;
+
+					if (x * x + y * y > parkSizeF * parkSizeF)
+						continue;
 
 					var tramp = SpawnTrampoline();
 					tramp.transform.localPosition = new Vector3(
