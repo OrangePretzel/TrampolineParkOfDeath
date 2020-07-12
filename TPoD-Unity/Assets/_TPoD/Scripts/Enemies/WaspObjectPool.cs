@@ -2,5 +2,5 @@
 
 namespace TPoD
 {
-	public class WaspObjectPool : ObjectPool<WaspEnemy> { }
+	public class WaspObjectPool : ObjectPool<Wasp> { }
 }

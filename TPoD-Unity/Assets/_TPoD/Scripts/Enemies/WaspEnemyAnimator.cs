@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace TPoD
 {
-	public class WaspEnemy : MonoBehaviour, IPoolable
+	public class WaspEnemyAnimator : MonoBehaviour
 	{
 		private const string ShootAnimationName = "Wasp - Shoot";
 
@@ -54,34 +54,6 @@ namespace TPoD
 				_headMeshRenderer.transform.localEulerAngles.y,
 				angle
 			);
-		}
-
-		#endregion
-
-		#region IPoolable
-
-		private ObjectPool<WaspEnemy> _objectPool;
-
-		public void ActivatePoolable<T>(ObjectPool<T> objectPool) where T : IPoolable
-		{
-			_objectPool = objectPool as ObjectPool<WaspEnemy>;
-			this.gameObject.SetActive(true);
-		}
-
-		public void DeactivatePoolable()
-		{
-			this.gameObject.SetActive(false);
-		}
-
-		private void ReturnToObjectPool()
-		{
-			if (_objectPool == null)
-				Destroy(this.gameObject);
-			else
-			{
-				_objectPool.ReturnObjectToPool(this);
-				_objectPool = null;
-			}
 		}
 
 		#endregion

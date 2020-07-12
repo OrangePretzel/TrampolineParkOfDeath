@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 369bc77a89b9bab429e1cefee0377dd1, type: 3}
   m_Name: Recolor Pass
   m_EditorClassIdentifier: 
-  m_Active: 1
+  m_Active: 0
   settings:
     Event: 400
     BlitMaterial: {fileID: 2100000, guid: f16a6101bb5cb24409b57d0d3c0409b0, type: 2}
