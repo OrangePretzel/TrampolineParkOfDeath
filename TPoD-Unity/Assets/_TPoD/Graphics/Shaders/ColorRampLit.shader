@@ -5,6 +5,7 @@ Shader "TPoD/Color Ramp Lit"
     Properties
     {
         _ColorRamp("Color Ramp", 2D) = "white" {}
+        _RampFactor("Ramp Factor", float) = 0.5
 
         [MainTexture] _BaseColor("Base Color", Color) = (1, 1, 1, 1)
         [MainColor] _BaseMap("Base Map (RGB) Smoothness / Alpha (A)", 2D) = "white" {}

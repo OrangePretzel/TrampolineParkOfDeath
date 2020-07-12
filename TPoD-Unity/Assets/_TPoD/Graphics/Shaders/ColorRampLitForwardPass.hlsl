@@ -5,6 +5,7 @@
 
 TEXTURE2D(_ColorRamp);
 SAMPLER(sampler_ColorRamp);
+float _RampFactor;
 
 struct Attributes
 {
@@ -143,16 +144,15 @@ half4 LitPassFragmentSimple(Varyings input) : SV_Target
     InitializeInputData(input, normalTS, inputData);
 
     half4 color = UniversalFragmentBlinnPhong(inputData, diffuse, specular, smoothness, emission, alpha);
+    // return color;
     
     half luminosity = 0.3 * color.r + 0.59 * color.g + 0.11 * color.b;
-    half4 colorRemap = SAMPLE_TEXTURE2D(_ColorRamp, sampler_ColorRamp, half2(luminosity, color.b));
-    
-    half4 outColor = colorRemap * color;
+    half4 colorRemap = SAMPLE_TEXTURE2D(_ColorRamp, sampler_ColorRamp, half2(luminosity, diffuse.b));
+    // return colorRemap;
+
+    half4 outColor = colorRemap * (_RampFactor) + color * (1 - _RampFactor);
     outColor.rgb = MixFog(outColor.rgb, inputData.fogCoord);
     return outColor;
-
-    // color.rgb = MixFog(color.rgb, inputData.fogCoord);
-    // return color;
 };
 
 #endif
