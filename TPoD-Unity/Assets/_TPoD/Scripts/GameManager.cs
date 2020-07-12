@@ -130,6 +130,7 @@ namespace TPoD
 		public void StartNewGame()
 		{
 			Cursor.lockState = CursorLockMode.Locked;
+			Cursor.visible = false;
 
 			_gameState = new GameState();
 			_gameState.IsPlaying = true;
