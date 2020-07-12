@@ -189,6 +189,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 7383503631055892831}
+  - {fileID: 7481145517218181929}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -225,6 +226,7 @@ MonoBehaviour:
   _shootDistance: 1000
   _gunDamage: 1
   _weakSpotOnly: 1
+  _gunShootStartLocation: {fileID: 7481145517218181929}
 --- !u!1 &6777922641605737658
 GameObject:
   m_ObjectHideFlags: 0
@@ -336,6 +338,36 @@ Transform:
   - {fileID: 7167962358205592251}
   m_Father: {fileID: 2117566975921722015}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &8501318160705730252
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7481145517218181929}
+  m_Layer: 9
+  m_Name: Gun Shot Start Position
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7481145517218181929
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8501318160705730252}
+  m_LocalRotation: {x: 0.051189385, y: 0.06360131, z: -0.0032666265, w: 0.9966564}
+  m_LocalPosition: {x: -2.5591555, y: 1.6200002, z: -2.8982105}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2117566975921722015}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &3470802992509403842
 PrefabInstance:

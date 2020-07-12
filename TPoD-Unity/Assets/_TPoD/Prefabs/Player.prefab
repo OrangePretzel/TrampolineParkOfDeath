@@ -509,11 +509,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player Gun
       objectReference: {fileID: 0}
-    - target: {fileID: 6235630777754823912, guid: 51af89f91aa4f7c429c0ee96dc36cf37,
-        type: 3}
-      propertyPath: m_Layer
-      value: 8
-      objectReference: {fileID: 0}
     - target: {fileID: 6777922641605737658, guid: 51af89f91aa4f7c429c0ee96dc36cf37,
         type: 3}
       propertyPath: m_Layer
