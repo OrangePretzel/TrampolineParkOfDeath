@@ -131,6 +131,8 @@ namespace TPoD
 			_gameState = new GameState();
 			_gameState.IsPlaying = true;
 
+			Player.health.ToggleInvincibility(true, 1f);
+
 			_waveManager.Clear();
 			_waveManager.StartWave(0);
 
