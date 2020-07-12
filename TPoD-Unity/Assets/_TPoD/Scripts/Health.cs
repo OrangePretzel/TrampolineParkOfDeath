@@ -20,6 +20,8 @@ namespace TPoD
 
         public float health { get; private set; }
 
+        private bool _isInvincible = false;
+
         /******* Monobehavior Methods *******/
 
         public void Awake()
@@ -29,6 +31,21 @@ namespace TPoD
 
         /******* Methods *******/
 
+        public void ToggleInvincibility(bool isInvincible, float length = -1)
+        {
+            _isInvincible = isInvincible;
+            if (length != -1)
+            {
+                StartCoroutine(WaitThenSetInvincibility(length, !isInvincible));
+            }
+        }
+
+        private IEnumerator WaitThenSetInvincibility(float time, bool toggleValue)
+        {
+            yield return new WaitForSeconds(time);
+            ToggleInvincibility(toggleValue);
+        }
+
         public void ResetHealth()
         {
             health = _startingHealth;
@@ -36,6 +53,9 @@ namespace TPoD
 
         public void DealDamage(float damage)
         {
+            if (_isInvincible)
+                return;
+
             health -= damage;
             onDamageTaken?.Invoke(damage, health);
             if (health <= 0f)

@@ -117,9 +117,16 @@ namespace TPoD
                 Debug.DrawRay(transform.position, moveDirection * _movementDistance, Color.red, 10f);
                 if (!Physics.Raycast(transform.position, moveDirection, _movementDistance, enemyShouldNotTouchLayer, QueryTriggerInteraction.Collide))
                 {
+                    
                     float _currentTime = 0f;
                     Vector3 startPosition = transform.position;
                     Vector3 targetPosition = startPosition + (moveDirection * _movementDistance);
+
+                    // Hacky fix for bugs getting under the stage
+                    if (targetPosition.y < 0)
+                    {
+                        break;
+                    }
 
                     while (_currentTime < _timeToMove)
                     {
