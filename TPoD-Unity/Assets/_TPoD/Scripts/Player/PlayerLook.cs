@@ -30,6 +30,8 @@ namespace TPoD
         public void Awake()
         {
             _input = GetComponent<IPlayerLookInput>();
+
+            Cursor.lockState = CursorLockMode.Locked;
         }
 
         public void Update()

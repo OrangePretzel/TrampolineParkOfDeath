@@ -127,8 +127,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9eb3110ba0ae35b44bad71757a7da824, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _lookSensitivity: 15
-  _dampValue: 0.15
+  _lookSensitivity: 12
+  _dampValue: 0.03
   _verticalRotationContainer: {fileID: 1445677657242065813}
 --- !u!114 &902687707430041171
 MonoBehaviour:

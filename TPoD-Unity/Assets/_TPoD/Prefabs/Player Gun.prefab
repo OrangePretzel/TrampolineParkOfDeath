@@ -222,6 +222,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _shootAnimation: {fileID: 8017629205394401529}
   _shootParticles: {fileID: 6380464545197530780}
+  _shootDistance: 1000
+  _gunDamage: 1
+  _weakSpotOnly: 1
 --- !u!1 &6777922641605737658
 GameObject:
   m_ObjectHideFlags: 0
