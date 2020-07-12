@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Trampoline
+namespace TPoD
 {
     [RequireComponent(typeof(CharacterController))]
     [RequireComponent(typeof(IPlayerMovementInput))]
@@ -13,14 +13,20 @@ namespace Trampoline
         /******* Variables & Properties*******/
 
         [Header("Customizable Params")]
-        [SerializeField] private float _strafeAcceleration;
-        [SerializeField] private float _maxStrafeVelocity;
+        [SerializeField] private float _strafeSpeed;
         [SerializeField] private float _gravityMultiplier = 1f;
+        [SerializeField] private float _dampingValue;
 
         private Vector3 _currentVelocity;
+        private Vector3 _currentVelocityHorizontal;
+        private Vector3 _dampingVelocity;
+
+        private HorizontalVelocityBoost horizontalBoost = null;
 
         private CharacterController _characterController;
         private IPlayerMovementInput _input;
+
+        public Vector3 horizontalDirection => new Vector3(_currentVelocityHorizontal.normalized.x, 0f, _currentVelocityHorizontal.normalized.z);
 
         /******* Monobehavior Methods *******/
 
@@ -32,7 +38,10 @@ namespace Trampoline
 
         private void Update()
         {
-            UpdateVelocity(Time.deltaTime);
+            UpdateVelocityGravity(Time.deltaTime);
+            UpdateVelocityInput(Time.deltaTime);
+            UpdateVelocityBoosts(Time.deltaTime);
+
             UpdateMovement(Time.deltaTime);
         }
 
@@ -43,25 +52,52 @@ namespace Trampoline
             _currentVelocity = velocity;
         }
 
-        private void UpdateVelocity(float deltaTime)
+        private void UpdateVelocityGravity(float deltaTime)
         {
             // 1. Gravity
-            Vector3 gravityDiff = deltaTime * Physics.gravity * _gravityMultiplier;
+            Vector3 gravityAddition = deltaTime * Physics.gravity * _gravityMultiplier;
+            _currentVelocity += gravityAddition;
+        }
 
+        private void UpdateVelocityInput(float deltaTime)
+        {
             // 2. Input
             Vector3 inputVector = new Vector3(_input.GetHorizontalAxis(), 0f, _input.GetVerticalAxis());
-            Vector3 inputDiff = deltaTime * _strafeAcceleration * ApplyTransformDirectionToInputVector(inputVector);
+            Vector3 targetVelocityHorizontal = _strafeSpeed * ApplyTransformDirectionToInputVector(inputVector);
+            _currentVelocityHorizontal = Vector3.SmoothDamp(_currentVelocityHorizontal, targetVelocityHorizontal, ref _dampingVelocity, _dampingValue);
 
-            float xResult = Mathf.Clamp(_currentVelocity.x + inputDiff.x, -_maxStrafeVelocity, _maxStrafeVelocity);
-            float zResult = Mathf.Clamp(_currentVelocity.z + inputDiff.z, -_maxStrafeVelocity, _maxStrafeVelocity);
-            float yResult = _currentVelocity.y + gravityDiff.y;
-
-            _currentVelocity = new Vector3(xResult, yResult, zResult);
+            _currentVelocity = new Vector3(_currentVelocityHorizontal.x, _currentVelocity.y, _currentVelocityHorizontal.z);
         }
 
         private Vector3 ApplyTransformDirectionToInputVector(Vector3 movementInput)
         {
-            return transform.InverseTransformDirection(movementInput);
+            return transform.TransformDirection(movementInput);
+        }
+
+        public void AddHoziontalVelocityBoost(HorizontalVelocityBoost boost)
+        {
+            horizontalBoost = boost;
+        }
+
+        public void AddVerticalVelocityBoost(VerticalVelocityBoost boost)
+        {
+            _currentVelocity = boost.velocityVector;
+        }
+
+        private void UpdateVelocityBoosts(float deltaTime)
+        {
+            if (horizontalBoost == null)
+                return;
+
+            bool isValid = horizontalBoost.UpdateVelocity(deltaTime);
+            if (!isValid)
+            {
+                horizontalBoost = null;
+            }
+            else
+            {
+                _currentVelocity += horizontalBoost.currentVelocity;
+            }
         }
 
         private void UpdateMovement(float deltaTime)

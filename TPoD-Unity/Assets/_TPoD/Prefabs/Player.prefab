@@ -12,9 +12,11 @@ GameObject:
   - component: {fileID: 1006916753161970476}
   - component: {fileID: 4148879100597794443}
   - component: {fileID: 709182660262684292}
+  - component: {fileID: 1339963930548442308}
+  - component: {fileID: 902687707430041171}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -46,9 +48,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0871cebe3302c214fb4531ca161aad4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _strafeAcceleration: 10
-  _maxStrafeVelocity: 20
+  _strafeSpeed: 10
   _gravityMultiplier: 1
+  _dampingValue: 0.15
 --- !u!114 &4148879100597794443
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -79,6 +81,32 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1339963930548442308
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2225400966091591646}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9eb3110ba0ae35b44bad71757a7da824, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _lookSensitivity: 15
+  _dampValue: 0.15
+--- !u!114 &902687707430041171
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2225400966091591646}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c73ee2279850e74889787d5632b369c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6060252749628521676
 GameObject:
   m_ObjectHideFlags: 0
@@ -90,6 +118,7 @@ GameObject:
   - component: {fileID: 8379723234832039167}
   - component: {fileID: 7954168673606497304}
   - component: {fileID: 2539291390147499852}
+  - component: {fileID: 5765587443960785489}
   m_Layer: 0
   m_Name: Player Camera
   m_TagString: MainCamera
@@ -162,3 +191,34 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6060252749628521676}
   m_Enabled: 1
+--- !u!114 &5765587443960785489
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6060252749628521676}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 0
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_RenderPostProcessing: 0
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+  m_Dithering: 0
+  m_ClearDepth: 1
+  m_RequiresDepthTexture: 0
+  m_RequiresColorTexture: 0
+  m_Version: 2

@@ -41,6 +41,13 @@ namespace TPoD
 		private GameObject SpawnTrampoline()
 		{
 			var trampObj = Instantiate(_parkSettings.TrampolinePrefab, _parkContainer);
+			TrampolineBooster booster = trampObj.GetComponentInChildren<TrampolineBooster>();
+
+			if (Random.value <= _parkSettings.ProbabilityOfDirectional)
+				booster.SetDirection(Random.Range(0, 360f));
+			else
+				booster.SetNoDirection();
+
 			return trampObj;
 		}
 	}

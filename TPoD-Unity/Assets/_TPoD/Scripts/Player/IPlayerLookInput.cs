@@ -4,9 +4,9 @@ using UnityEngine;
 
 namespace TPoD
 {
-    public interface IPlayerMovementInput
+    public interface IPlayerLookInput
     {
-        float GetHorizontalAxis();
-        float GetVerticalAxis();
+        float GetHorizontalLook();
+        float GetVerticalLook();
     }
 }
