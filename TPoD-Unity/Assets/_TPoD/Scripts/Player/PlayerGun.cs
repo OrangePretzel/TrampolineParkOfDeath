@@ -11,6 +11,7 @@ namespace TPoD
 		[Header("Shooting Mechanic")]
 		[SerializeField] private float _shootDistance = 1000f;
 		[SerializeField] private float _gunDamage = 1;
+		[SerializeField] private float _bulletRadius = 0.5f;
 		[SerializeField] private bool _weakSpotOnly;
 		[SerializeField] private Transform _gunShootStartLocation;
 
@@ -44,7 +45,7 @@ namespace TPoD
 			RaycastHit raycastHit;
 			Debug.DrawRay(_gunShootStartLocation.position, _gunShootStartLocation.forward * _shootDistance, Color.blue, 3f);
 
-			if (Physics.Raycast(_gunShootStartLocation.position, _gunShootStartLocation.forward, out raycastHit, _shootDistance, _shootMask, QueryTriggerInteraction.Collide) )
+			if (Physics.SphereCast(_gunShootStartLocation.position, _bulletRadius, _gunShootStartLocation.forward, out raycastHit, _shootDistance, _shootMask, QueryTriggerInteraction.Collide) )
 			{
 				if (!_weakSpotOnly || raycastHit.collider.gameObject.layer == _weakPointLayer)
 				{
