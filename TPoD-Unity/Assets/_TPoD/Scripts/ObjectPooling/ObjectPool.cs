@@ -30,6 +30,12 @@ namespace Metamesa.MMUnity.ObjectPooling
 #endif
 
 			T poolable = _poolables.Dequeue();
+
+			if(poolable is Component component)
+			{
+				component.transform.SetParent(this.transform);
+			}
+
 			poolable.ActivatePoolable(this);
 
 			return poolable;

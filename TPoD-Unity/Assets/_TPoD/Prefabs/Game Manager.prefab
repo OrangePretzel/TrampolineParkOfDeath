@@ -29,6 +29,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 7690888053787382354}
+  - {fileID: 2154836384987496199}
+  - {fileID: 1477602910333264676}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -56,6 +58,98 @@ MonoBehaviour:
     NumEnemiesRemaining: 0
   _waveManager: {fileID: 0}
   WaspProjectilePool: {fileID: 5132361469891931445}
+  DyingWaspPool: {fileID: 5659106058298340693}
+  ExplosionPool: {fileID: 3570643068767049187}
+--- !u!1 &6410044398386809745
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1477602910333264676}
+  - component: {fileID: 3570643068767049187}
+  m_Layer: 0
+  m_Name: Explosion Pool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1477602910333264676
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6410044398386809745}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 888144584205917080}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3570643068767049187
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6410044398386809745}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1ee604924a9e5c4ca73b442e55be9fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _poolablePrefab: {fileID: 7870889836431447577, guid: f852c68aa2b38b4439110f286e0d28d5,
+    type: 3}
+--- !u!1 &8234833103797314581
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2154836384987496199}
+  - component: {fileID: 5659106058298340693}
+  m_Layer: 0
+  m_Name: Dying Wasp Pool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2154836384987496199
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8234833103797314581}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 888144584205917080}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5659106058298340693
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8234833103797314581}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a36ad7eae1af30b47b4a8b51ce6fd92b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _poolablePrefab: {fileID: 4850321904041324317, guid: 734845fee05b019449cba2e670efe57d,
+    type: 3}
 --- !u!1 &8591047103041091148
 GameObject:
   m_ObjectHideFlags: 0
@@ -99,4 +193,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39d2fb971a8df9647a061517dddf9cf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _poolablePrefab: {fileID: 0}
+  _poolablePrefab: {fileID: 4825001848924576257, guid: 5a721952396fe254f82c3590362ce901,
+    type: 3}

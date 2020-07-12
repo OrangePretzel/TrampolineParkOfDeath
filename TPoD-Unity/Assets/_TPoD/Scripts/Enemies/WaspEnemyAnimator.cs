@@ -1,5 +1,4 @@
 ﻿using Metamesa.MMUnity.Helpers;
-using Metamesa.MMUnity.ObjectPooling;
 using System;
 using UnityEngine;
 
@@ -21,11 +20,23 @@ namespace TPoD
 		[SerializeField] private MeshRenderer _armLeftMeshRenderer = null;
 		[SerializeField] private MeshRenderer _armRightMeshRenderer = null;
 
+		[SerializeField] private bool _isDyingWaspType = false;
+		[SerializeField] private float _dyingSpinSpeed = 300f;
+
 		private void Update()
 		{
 			AimHeadAtTarget(GameManager.Instance.PlayerTransform.position);
 			//if (Input.GetKeyDown(KeyCode.B))
 			//	Shoot();
+
+			if (_isDyingWaspType)
+			{
+				transform.localRotation = Quaternion.Euler(
+					transform.localEulerAngles.x,
+					Time.time * _dyingSpinSpeed,
+					transform.localEulerAngles.z
+					);
+			}
 		}
 
 		public void PerformActualShoot()
@@ -36,6 +47,8 @@ namespace TPoD
 		public void HandleDamageTaken(float damageAmount, float newHealth)
 		{
 			// TODO Alosh (Alex + Josh)
+			if (newHealth <= 0)
+				PerformDeath();
 		}
 
 		#region Animation Functions
@@ -59,6 +72,22 @@ namespace TPoD
 				_headMeshRenderer.transform.localEulerAngles.y,
 				angle
 			);
+		}
+
+		public void PerformDeath()
+		{
+			if (!_isDyingWaspType)
+			{
+				// Spawn dying type
+				var dyingWasp = GameManager.Instance.DyingWaspPool.GetObjectFromPool();
+				dyingWasp.transform.position = transform.position;
+
+				// Destroy self
+			}
+			else
+			{
+				// Stay gold pony boy
+			}
 		}
 
 		#endregion

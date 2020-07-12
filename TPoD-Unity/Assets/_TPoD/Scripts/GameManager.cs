@@ -3,6 +3,7 @@ using TPoD.UI;
 using UnityEngine;
 using System.Collections;
 using Metamesa.MMUnity.ObjectPooling;
+using UnityEngine.SceneManagement;
 
 namespace TPoD
 {
@@ -50,6 +51,8 @@ namespace TPoD
 		[SerializeField] private WaveManager _waveManager;
 
 		[SerializeField] public WaspProjectilePool WaspProjectilePool;
+		[SerializeField] public DyingWaspObjectPool DyingWaspPool;
+		[SerializeField] public ExplosionObjectPool ExplosionPool;
 
 		public static GameState GameState
 		{
@@ -130,6 +133,8 @@ namespace TPoD
 
 			_waveManager.Clear();
 			_waveManager.StartWave(0);
+
+			_hud.ToggleGameOver(false);
 		}
 
 		public void HandleGameOver(GameObject playerObject)
@@ -141,7 +146,9 @@ namespace TPoD
 		private void HandleReplay()
 		{
 			_hud.ToggleGameOver(false);
-			StartNewGame();
+			//StartNewGame();
+
+			SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex, LoadSceneMode.Single);
 		}
 
 		#endregion
