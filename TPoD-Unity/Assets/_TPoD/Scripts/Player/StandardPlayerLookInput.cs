@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace TPoD
 {
-    public class StandardPlayerLookInput : MonoBehaviour, IPlayerLookInput
+	public class StandardPlayerLookInput : MonoBehaviour, IPlayerLookInput
     {
         public float GetHorizontalLook()
         {
