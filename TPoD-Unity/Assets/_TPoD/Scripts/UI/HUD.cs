@@ -1,10 +1,18 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 namespace TPoD.UI
 {
 	public class HUD : MonoBehaviour
 	{
+		private const string WAVE_COUNT_FORMAT = "Wave {0}";
+		private const string ENEMY_COUNT_FORMAT = "Enemy {0}";
+
+
 		[SerializeField] private HUDTimer _hudTimer = null;
+		[SerializeField] private TextMeshProUGUI _waveCountText;
+		[SerializeField] private TextMeshProUGUI _enemyCountText;
 
 		private void Update()
 		{
@@ -16,6 +24,16 @@ namespace TPoD.UI
 				return;
 
 			_hudTimer.UpdateTimerText(gameState.Time);
+		}
+
+		public void SetEnemyCount(int enemyCount)
+		{
+			_enemyCountText.SetText(string.Format(ENEMY_COUNT_FORMAT, enemyCount.ToString()));
+		}
+
+		public void SetWaveCount(int waveCount)
+		{
+			_waveCountText.SetText(string.Format(WAVE_COUNT_FORMAT, waveCount.ToString()));
 		}
 	}
 }

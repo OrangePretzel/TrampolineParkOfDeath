@@ -29,6 +29,11 @@ namespace TPoD
             StartCoroutine(RunAIEnumerator(aiState));
         }
 
+        public void StopAI()
+        {
+            _isAIRunning = false;
+        }
+
         public IEnumerator RunAIEnumerator(IAIState aiState)
         {
             while (_isAIRunning)

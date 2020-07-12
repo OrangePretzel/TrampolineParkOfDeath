@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-namespace Trampoline
+namespace TPoD
 {
     public class Health : MonoBehaviour
     {
@@ -29,7 +29,12 @@ namespace Trampoline
 
         /******* Methods *******/
 
-        public void DoDamage(float damage)
+        public void ResetHealth()
+        {
+            health = _startingHealth;
+        }
+
+        public void DealDamage(float damage)
         {
             health -= damage;
             onDamageDone?.Invoke(damage, health);

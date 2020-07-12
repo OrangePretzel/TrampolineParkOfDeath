@@ -13,6 +13,8 @@ namespace TPoD
 
             public const string HORIZONTAL_LOOK_AXIS = "HorizontalLook";
             public const string VERTICAL_LOOK_AXIS = "VerticalLook";
+
+            public const string CHEAT_DEAL_DAMAGE = "CheatDamage";
         }
 
         public class TagConstants
