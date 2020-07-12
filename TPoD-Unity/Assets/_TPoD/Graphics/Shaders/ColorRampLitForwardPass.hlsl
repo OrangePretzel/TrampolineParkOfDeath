@@ -145,7 +145,8 @@ half4 LitPassFragmentSimple(Varyings input) : SV_Target
     half4 color = UniversalFragmentBlinnPhong(inputData, diffuse, specular, smoothness, emission, alpha);
     
     half luminosity = 0.3 * color.r + 0.59 * color.g + 0.11 * color.b;
-    half4 colorRemap = SAMPLE_TEXTURE2D(_ColorRamp, sampler_ColorRamp, half2(luminosity, 0));
+    half4 colorRemap = SAMPLE_TEXTURE2D(_ColorRamp, sampler_ColorRamp, half2(luminosity, color.b));
+    
     half4 outColor = colorRemap * color;
     outColor.rgb = MixFog(outColor.rgb, inputData.fogCoord);
     return outColor;
