@@ -7,10 +7,10 @@ namespace TPoD
 {
 	public class WaspEnemy : MonoBehaviour, IPoolable
 	{
-		private const string DefaultAnimationName = "No State";
 		private const string ShootAnimationName = "Wasp - Shoot";
 
 		[SerializeField] private Animator _animator = null;
+		[SerializeField] private ParticleSystem _gunParticles = null;
 
 		[Header("Model Parts")]
 		[SerializeField] private MeshRenderer _headMeshRenderer = null;
@@ -18,17 +18,19 @@ namespace TPoD
 		[SerializeField] private MeshRenderer _leftJetpackMeshRenderer = null;
 		[SerializeField] private MeshRenderer _rightJetpackMeshRenderer = null;
 		[SerializeField] private MeshRenderer _gunMeshRenderer = null;
+		[SerializeField] private MeshRenderer _armLeftMeshRenderer = null;
+		[SerializeField] private MeshRenderer _armRightMeshRenderer = null;
 
 		private void Update()
 		{
 			AimHeadAtTarget(GameManager.Instance.PlayerTransform.position);
-			if (Input.GetKeyDown(KeyCode.B))
-				Shoot();
+			//if (Input.GetKeyDown(KeyCode.B))
+			//	Shoot();
 		}
 
 		public void PerformActualShoot()
 		{
-			Debug.Log("Shooty McBooty");
+			_gunParticles.Play();
 		}
 
 		#region Animation Functions
