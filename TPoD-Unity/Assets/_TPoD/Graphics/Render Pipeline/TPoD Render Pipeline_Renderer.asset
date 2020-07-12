@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 369bc77a89b9bab429e1cefee0377dd1, type: 3}
-  m_Name: Grayscale
+  m_Name: Recolor Pass
   m_EditorClassIdentifier: 
   m_Active: 1
   settings:
-    Event: 550
-    BlitMaterial: {fileID: 2100000, guid: fdf8c0e2043975345ad82eecdbd5e9b3, type: 2}
+    Event: 600
+    BlitMaterial: {fileID: 2100000, guid: 4a93d66bb15c2594bad851b6c599b4bd, type: 2}
     BlitMaterialPassIndex: -1
     Destination: 0
     TextureID: _BlitPassTexture
