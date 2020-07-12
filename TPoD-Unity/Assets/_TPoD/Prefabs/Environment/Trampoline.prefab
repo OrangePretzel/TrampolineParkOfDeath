@@ -217,7 +217,7 @@ GameObject:
   - component: {fileID: 3041967361127010605}
   - component: {fileID: 5822143162296910306}
   - component: {fileID: 8946206634800109491}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Trampoline Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}

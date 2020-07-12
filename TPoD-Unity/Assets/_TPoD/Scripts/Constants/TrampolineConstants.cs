@@ -19,5 +19,10 @@ namespace TPoD
         {
             public const string PLAYER = "Player";
         }
+
+        public class LayerConstants
+        {
+            public const string ENEMY_SHOULD_NOT_TOUCH = "EnemyShouldNotTouch";
+        }
     }
 }
