@@ -18,6 +18,7 @@ namespace TPoD
 
             public const string SHOOT = "Shoot";
             public const string REPLAY = "Replay";
+            public const string QUIT = "Quit";
 
         }
 

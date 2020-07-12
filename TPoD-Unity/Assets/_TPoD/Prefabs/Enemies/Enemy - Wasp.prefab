@@ -293,7 +293,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: ac40bc82365f24c458eb0d0f638d48b4, type: 2}
+  - {fileID: 2100000, guid: 6efe5b9213e522a46b78c9e345f3b960, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -622,10 +622,8 @@ MonoBehaviour:
   _gunMeshRenderer: {fileID: 2098992504898698346}
   _armLeftMeshRenderer: {fileID: 3547233960713391836}
   _armRightMeshRenderer: {fileID: 56746052859439607}
-  _isDying: 0
+  _isDyingWaspType: 0
   _dyingSpinSpeed: 300
-  _deathCollider: {fileID: 0}
-  _dyingRigidbody: {fileID: 0}
 --- !u!95 &140531831736149250
 Animator:
   serializedVersion: 3
@@ -1004,6 +1002,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5994796957541092252}
     m_Modifications:
+    - target: {fileID: 3141968086169262085, guid: 2c6883bfde2f34447ab6727773d44b24,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 6efe5b9213e522a46b78c9e345f3b960, type: 2}
+    - target: {fileID: 3141968086169262085, guid: 2c6883bfde2f34447ab6727773d44b24,
+        type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 6efe5b9213e522a46b78c9e345f3b960, type: 2}
     - target: {fileID: 3141968086169262086, guid: 2c6883bfde2f34447ab6727773d44b24,
         type: 3}
       propertyPath: m_LocalPosition.x

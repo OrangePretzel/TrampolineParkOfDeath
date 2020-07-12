@@ -14,6 +14,7 @@ namespace TPoD
 
 		private void OnEnable()
 		{
+			transform.localScale = Vector3.one;
 			_rigidbody.velocity = Vector3.zero;
 			transform.localRotation = Quaternion.Euler(0, 0, 0);
 			StartCoroutine(DoTheBoom());
@@ -21,6 +22,8 @@ namespace TPoD
 
 		private IEnumerator DoTheBoom()
 		{
+			transform.localScale = Vector3.one * 0.75f;
+
 			float startTime = Time.time;
 			while (Time.time - startTime < 3)
 			{
