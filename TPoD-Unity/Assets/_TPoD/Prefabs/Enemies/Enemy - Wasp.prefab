@@ -360,6 +360,7 @@ GameObject:
   - component: {fileID: 5908539028740411864}
   - component: {fileID: 8162492364045041547}
   - component: {fileID: 140531831736149250}
+  - component: {fileID: 756822015}
   m_Layer: 0
   m_Name: Enemy - Wasp
   m_TagString: Untagged
@@ -419,6 +420,24 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &756822015
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5908539028740411867}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b18697032fb0e154da0440ba603bc266, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _startDelayTime: 1
+  _numShots: 0
+  _delayBetweenShots: 0
+  _movementDistance: 12
+  _maxVerticalDirectionMagnitude: 0.2
+  _timeToMove: 0.75
 --- !u!1 &6245452464705937648
 GameObject:
   m_ObjectHideFlags: 0

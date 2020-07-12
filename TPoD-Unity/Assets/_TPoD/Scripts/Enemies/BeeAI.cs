@@ -89,15 +89,17 @@ namespace TPoD
                 Vector3 moveDirection = GetRandomMoveDirection();
                 RaycastHit raycastHit;
                 int enemyShouldNotTouchLayer = 1 << LayerMask.NameToLayer(TrampolineConstants.LayerConstants.ENEMY_SHOULD_NOT_TOUCH);
-                if (!Physics.Raycast(transform.position, moveDirection, _movementDistance, enemyShouldNotTouchLayer, QueryTriggerInteraction.UseGlobal))
+                Debug.DrawRay(transform.position, moveDirection * _movementDistance, Color.red, 10f);
+                if (!Physics.Raycast(transform.position, moveDirection, _movementDistance, enemyShouldNotTouchLayer, QueryTriggerInteraction.Collide))
                 {
                     float _currentTime = 0f;
-                    while(_currentTime < _timeToMove)
+                    Vector3 startPosition = transform.position;
+                    Vector3 targetPosition = startPosition + (moveDirection * _movementDistance);
+
+                    while (_currentTime < _timeToMove)
                     {
                         _currentTime += Time.deltaTime;
                         float t = _currentTime / _timeToMove;
-                        Vector3 startPosition = transform.position;
-                        Vector3 targetPosition = startPosition + (moveDirection * _movementDistance);
                         transform.position = Vector3.Lerp(startPosition, targetPosition, t);
                         yield return null;
                     }
