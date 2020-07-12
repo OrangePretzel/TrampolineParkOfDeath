@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Trampoline
+namespace TPoD
 {
-    public class VerticalVelocityBoost : MonoBehaviour
+    public class VerticalVelocityBoost
     {
         public Vector3 velocityVector { get; private set; }
 

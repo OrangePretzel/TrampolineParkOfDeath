@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Trampoline
+namespace TPoD
 {
     public class StandardPlayerMovementInput : MonoBehaviour, IPlayerMovementInput
     {

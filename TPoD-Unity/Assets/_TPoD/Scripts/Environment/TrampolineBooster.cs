@@ -2,16 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Trampoline
+namespace TPoD
 {
     public class TrampolineBooster : MonoBehaviour
     {
         /******* Events *******/
 
         /******* Variables & Properties*******/
+        [Header("Customizable Params")]
         [SerializeField] private float _verticalBoostVelocity;
         [SerializeField] private float _horizontalBoostStartVelocity;
         [SerializeField] private float _horizontalBoostTime;
+
+        [Header("Components")]
+        [SerializeField] private TrampolineBoosterDirection _boosterDirection;
 
         /******* Monobehavior Methods *******/
 
@@ -25,11 +29,25 @@ namespace Trampoline
 
         /******* Methods *******/
 
+        public void SetDirection(float rotationValue)
+        {
+            _boosterDirection.Toggle(true);
+            _boosterDirection.SetRotation(rotationValue);
+        }
+
+        public void SetNoDirection()
+        {
+            _boosterDirection.Toggle(false);
+        }
+
         private void BoostPlayer(PlayerMovement playerMovement)
         {
             playerMovement.AddVerticalVelocityBoost(new VerticalVelocityBoost(_verticalBoostVelocity));
             float horizontalAcceleration = -_horizontalBoostStartVelocity / _horizontalBoostTime;
-            playerMovement.AddHoziontalVelocityBoost(new HorizontalVelocityBoost(_horizontalBoostStartVelocity, horizontalAcceleration, playerMovement.horizontalDirection));
+
+            Vector3 direction = _boosterDirection.isToggledOn ? _boosterDirection.direction : playerMovement.horizontalDirection;
+
+            playerMovement.AddHoziontalVelocityBoost(new HorizontalVelocityBoost(_horizontalBoostStartVelocity, horizontalAcceleration, direction));
         }
     }
 }
