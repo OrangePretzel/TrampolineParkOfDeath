@@ -45,9 +45,10 @@ namespace TPoD
             playerMovement.AddVerticalVelocityBoost(new VerticalVelocityBoost(_verticalBoostVelocity));
             float horizontalAcceleration = -_horizontalBoostStartVelocity / _horizontalBoostTime;
 
-            Vector3 direction = _boosterDirection.isToggledOn ? _boosterDirection.direction : playerMovement.horizontalDirection;
-
-            playerMovement.AddHoziontalVelocityBoost(new HorizontalVelocityBoost(_horizontalBoostStartVelocity, horizontalAcceleration, direction));
+            if (_boosterDirection.isToggledOn)
+            {
+                playerMovement.AddHoziontalVelocityBoost(new HorizontalVelocityBoost(_horizontalBoostStartVelocity, horizontalAcceleration, _boosterDirection.direction));
+            }
         }
     }
 }

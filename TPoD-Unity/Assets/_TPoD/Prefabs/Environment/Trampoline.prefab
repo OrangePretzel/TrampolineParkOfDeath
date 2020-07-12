@@ -265,8 +265,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _verticalBoostVelocity: 15
-  _horizontalBoostStartVelocity: 15
-  _horizontalBoostTime: 3
+  _horizontalBoostStartVelocity: 10
+  _horizontalBoostTime: 2.5
   _boosterDirection: {fileID: 6237258883439514214}
 --- !u!54 &8946206634800109491
 Rigidbody:
