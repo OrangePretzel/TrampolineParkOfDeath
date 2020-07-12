@@ -52,7 +52,8 @@ MonoBehaviour:
   - numEnemies: 12
   _minSpawnPoint: {x: -20, y: 5, z: -20}
   _maxSpawnPoint: {x: 20, y: 10, z: 20}
-  _playerSafeAreaRadius: 100
+  _idealSpawnDistance: 10
+  _playerSafeAreaRadius: 5
   _waspObjectPool: {fileID: 4833778479516061100}
 --- !u!1 &4833778479516061102
 GameObject:

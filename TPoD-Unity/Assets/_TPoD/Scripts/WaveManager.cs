@@ -48,14 +48,14 @@ namespace TPoD
 		/******* Monobehavior Methods *******/
 
 		// TODO : THIS IS A CHEAT, REMOVE
-		public void Update()
-		{
-			if (Input.GetButtonDown(TrampolineConstants.InputConstants.CHEAT_DEAL_DAMAGE))
-			{
-				int randomEnemyIndex = Random.Range(0, _wasps.Count);
-				_wasps[randomEnemyIndex].health.DealDamage(1);
-			}
-		}
+		//public void Update()
+		//{
+		//	if (Input.GetButtonDown(TrampolineConstants.InputConstants.CHEAT_DEAL_DAMAGE))
+		//	{
+		//		int randomEnemyIndex = Random.Range(0, _wasps.Count);
+		//		_wasps[randomEnemyIndex].health.DealDamage(1);
+		//	}
+		//}
 
 		/******* Methods *******/
 
@@ -84,6 +84,8 @@ namespace TPoD
 				_wasps.Add(wasp);
 			}
 
+			GameManager.Instance.Player.health.ToggleInvincibility(true, 1f);
+
 			onEnemyCountChanged?.Invoke(waveData.numEnemies);
 			onWaveStarted?.Invoke(GameManager.GameState.CurrentWaveIndex);
 		}
@@ -102,6 +104,7 @@ namespace TPoD
 				newPos.x = Mathf.Clamp(newPos.x, _minSpawnPoint.x, _maxSpawnPoint.x);
 				newPos.z = Mathf.Clamp(newPos.z, _minSpawnPoint.z, _maxSpawnPoint.z);
 				newPos.y = Random.Range(_minSpawnPoint.y, _maxSpawnPoint.y);
+				return newPos;
 
 				var dPos = newPos - playerPos;
 				if (dPos.sqrMagnitude >= _playerSafeAreaRadius * _playerSafeAreaRadius)
@@ -112,7 +115,7 @@ namespace TPoD
 				++attempt;
 			}
 
-			return Vector3.up * 3;
+			return (_minSpawnPoint + _maxSpawnPoint) / 2f;
 
 			/*
             int maxAttempts = 100;
