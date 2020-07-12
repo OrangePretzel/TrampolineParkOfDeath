@@ -57,6 +57,17 @@ namespace TPoD
 
         /******* Methods *******/
 
+        public void Clear()
+        {
+            foreach (var wasp in _wasps)
+            {
+                _waspObjectPool.ReturnObjectToPool(wasp);
+            }
+            _wasps.Clear();
+            GameManager.GameState.CurrentWaveIndex = 0;
+            GameManager.GameState.NumEnemiesRemaining = 0;
+        }
+
         public void StartWave(int waveIndex)
         {
             GameManager.GameState.CurrentWaveIndex = waveIndex;

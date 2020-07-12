@@ -20,7 +20,6 @@ namespace TPoD
 
 		private void Awake()
 		{
-			
 			_weakPointLayer = LayerMask.NameToLayer(TrampolineConstants.LayerConstants.ENEMY_WEAK_SPOT);
 			int weakPointMask = 1 << _weakPointLayer;
 			int waspColliderMask = 1 << LayerMask.NameToLayer(TrampolineConstants.LayerConstants.ENEMY_COLLIDER);
@@ -53,7 +52,6 @@ namespace TPoD
 					health.DealDamage(_gunDamage);
 				}
 			}
-			
 		}
 	}
 }

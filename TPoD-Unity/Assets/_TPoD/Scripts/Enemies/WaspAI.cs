@@ -36,6 +36,9 @@ namespace TPoD
         [SerializeField] private float _startDelayTime;
         [SerializeField] private int _numShots;
         [SerializeField] private float _delayBetweenShots;
+        [SerializeField] private float _radiusAroundPlayerToShootAt;
+        [SerializeField] private float _reRotateTime;
+
 
         [Header("Move Action Customizable Parameters")]
         [SerializeField] private float _movementDistance;
@@ -43,6 +46,7 @@ namespace TPoD
 
         [SerializeField] private float _timeToMove;
 
+        private Wasp _wasp;
         private WaspAIState _aiState;
         protected override IAIState aiState => _aiState;
 
@@ -50,6 +54,7 @@ namespace TPoD
 
         public void Awake()
         {
+            _wasp = GetComponent<Wasp>();
             _aiState = new WaspAIState();
             StartAI();
         }
@@ -74,11 +79,31 @@ namespace TPoD
             yield return new WaitForSeconds(_startDelayTime);
             for (int i = 0; i < _numShots; i++)
             {
-                //Random.insideUnitCircle
+                Vector3 randomTarget = GameManager.Instance.PlayerTransform.position + (Random.insideUnitSphere * _radiusAroundPlayerToShootAt);
 
                 // Shoot Logic
-                // TODO
-                yield return new WaitForSeconds(_delayBetweenShots);
+                WaspProjectile waspProjectile = GameManager.Instance.WaspProjectilePool.GetObjectFromPool();
+                waspProjectile.transform.position = transform.position;
+                waspProjectile.Shoot(randomTarget - transform.position);
+                _wasp.animator.TriggerShootAnimation();
+
+                if (i < _numShots - 1)
+                {
+                    yield return new WaitForSeconds(_delayBetweenShots);
+
+                    float currentReRotateTime = 0f;
+                    Vector3 targetLookDirection = GameManager.Instance.PlayerTransform.position - transform.position;
+                    targetLookDirection.y = 0;
+                    Quaternion targetRotation = Quaternion.LookRotation(targetLookDirection, Vector3.up);
+                    Quaternion startRotation = transform.rotation;
+                    while (currentReRotateTime < _reRotateTime)
+                    {
+                        currentReRotateTime += Time.deltaTime;
+                        float t = currentReRotateTime / _reRotateTime;
+                        transform.rotation = Quaternion.Lerp(startRotation, targetRotation, t);
+                        yield return null;
+                    }
+                }
             }
         }
 
@@ -100,7 +125,11 @@ namespace TPoD
                     {
                         _currentTime += Time.deltaTime;
                         float t = _currentTime / _timeToMove;
-                        transform.position = Vector3.Lerp(startPosition, targetPosition, t);
+                        Vector3 position = Vector3.Lerp(startPosition, targetPosition, t);
+                        Vector3 lookDirection = GameManager.Instance.PlayerTransform.position - transform.position;
+                        lookDirection.y = 0;
+                        Quaternion rotation = Quaternion.LookRotation(lookDirection, Vector3.up);
+                        transform.SetPositionAndRotation(position, rotation);
                         yield return null;
                     }
                     break;

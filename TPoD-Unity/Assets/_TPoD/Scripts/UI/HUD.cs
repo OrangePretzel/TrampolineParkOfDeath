@@ -1,18 +1,22 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System;
 
 namespace TPoD.UI
 {
 	public class HUD : MonoBehaviour
 	{
+		public Action onReplay;
+
 		private const string WAVE_COUNT_FORMAT = "Wave {0}";
 		private const string ENEMY_COUNT_FORMAT = "Enemies Left : {0}";
-
 
 		[SerializeField] private HUDTimer _hudTimer = null;
 		[SerializeField] private TextMeshProUGUI _waveCountText;
 		[SerializeField] private TextMeshProUGUI _enemyCountText;
+
+		[SerializeField] private GameObject _gameOverObject;
 
 		private void Update()
 		{
@@ -20,10 +24,15 @@ namespace TPoD.UI
 			if (gameState == null)
 				return;
 
-			if (!gameState.IsPlaying)
-				return;
+			if (gameState.IsPlaying)
+			{
+				_hudTimer.UpdateTimerText(gameState.Time);
+			}
 
-			_hudTimer.UpdateTimerText(gameState.Time);
+			if (_gameOverObject.activeSelf && Input.GetButtonDown(TrampolineConstants.InputConstants.REPLAY))
+			{
+				onReplay?.Invoke();
+			}
 		}
 
 		public void SetEnemyCount(int enemyCount)
@@ -34,6 +43,11 @@ namespace TPoD.UI
 		public void SetWaveCount(int waveCount)
 		{
 			_waveCountText.SetText(string.Format(WAVE_COUNT_FORMAT, waveCount.ToString()));
+		}
+
+		public void ToggleGameOver(bool isGameOver)
+		{
+			_gameOverObject.SetActive(isGameOver);
 		}
 	}
 }

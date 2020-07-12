@@ -17,6 +17,7 @@ namespace TPoD
             public const string CHEAT_DEAL_DAMAGE = "CheatDamage";
 
             public const string SHOOT = "Shoot";
+            public const string REPLAY = "Replay";
 
         }
 

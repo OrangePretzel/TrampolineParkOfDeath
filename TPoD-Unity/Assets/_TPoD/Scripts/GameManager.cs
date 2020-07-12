@@ -1,6 +1,8 @@
 ﻿using Sirenix.OdinInspector;
-using UnityEngine;
 using TPoD.UI;
+using UnityEngine;
+using System.Collections;
+using Metamesa.MMUnity.ObjectPooling;
 
 namespace TPoD
 {
@@ -16,6 +18,8 @@ namespace TPoD
 		// Wave Stuff
 		public int CurrentWaveIndex;
 		public int NumEnemiesRemaining;
+
+		public float PlayerHealth => GameManager.Instance.Player.health.health;
 
 		public void UpdateGameState(float deltaTime)
 		{
@@ -41,9 +45,11 @@ namespace TPoD
 		[SerializeField] private HUD _hud;
 		[SerializeField] private ParkBuilder _parkBuilder = null;
 
-		[SerializeField] private GameObject _playerObject = null;
+		[SerializeField] public Player Player = null;
 		[SerializeField] [ReadOnly] private GameState _gameState = null;
 		[SerializeField] private WaveManager _waveManager;
+
+		[SerializeField] public WaspProjectilePool WaspProjectilePool;
 
 		public static GameState GameState
 		{
@@ -55,7 +61,7 @@ namespace TPoD
 			}
 		}
 
-		public Transform PlayerTransform => _playerObject.transform;
+		public Transform PlayerTransform => Player.gameObject.transform;
 
 		#region Singleton
 
@@ -86,6 +92,9 @@ namespace TPoD
 			_waveManager.onEnemyCountChanged += _hud.SetEnemyCount;
 			_waveManager.onWaveStarted += _hud.SetWaveCount;
 
+			Player.health.onDeath += HandleGameOver;
+			_hud.onReplay += HandleReplay;
+
 			StartNewGame();
 		}
 
@@ -114,10 +123,25 @@ namespace TPoD
 
 		public void StartNewGame()
 		{
+			Cursor.lockState = CursorLockMode.Locked;
+
 			_gameState = new GameState();
 			_gameState.IsPlaying = true;
 
+			_waveManager.Clear();
 			_waveManager.StartWave(0);
+		}
+
+		public void HandleGameOver(GameObject playerObject)
+		{
+			_gameState.IsPlaying = false;
+			_hud.ToggleGameOver(true);
+		}
+
+		private void HandleReplay()
+		{
+			_hud.ToggleGameOver(false);
+			StartNewGame();
 		}
 
 		#endregion

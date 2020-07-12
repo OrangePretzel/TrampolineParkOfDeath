@@ -40,7 +40,7 @@ namespace TPoD
 
 		#region Animation Functions
 
-		public void Shoot()
+		public void TriggerShootAnimation()
 		{
 			_animator.Play(ShootAnimationName);
 		}
