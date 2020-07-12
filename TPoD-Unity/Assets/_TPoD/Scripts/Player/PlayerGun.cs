@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace TPoD
 {
@@ -40,6 +41,8 @@ namespace TPoD
 		public void FireActualShot()
 		{
 			_shootParticles.Play();
+
+			GameManager.Instance.Player.AddGunKnockback();
 
 			RaycastHit raycastHit;
 			Debug.DrawRay(_gunShootStartLocation.position, _gunShootStartLocation.forward * _shootDistance, Color.blue, 3f);

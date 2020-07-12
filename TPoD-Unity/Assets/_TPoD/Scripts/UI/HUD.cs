@@ -46,10 +46,14 @@ namespace TPoD.UI
 					onQuit?.Invoke();
 				}
 			}
-
-			if (_gameOverObject.activeSelf && Input.GetButtonDown(TrampolineConstants.InputConstants.REPLAY))
+			else if (_gameOverObject.activeSelf && Input.GetButtonDown(TrampolineConstants.InputConstants.REPLAY))
 			{
 				onReplay?.Invoke();
+			}
+			else
+			{
+				if(Input.GetKeyDown(KeyCode.Escape))
+					onReplay?.Invoke();
 			}
 		}
 
@@ -66,6 +70,11 @@ namespace TPoD.UI
 		public void ToggleGameOver(bool isGameOver)
 		{
 			_gameOverObject.SetActive(isGameOver);
+		}
+
+		public void ToggleMainMenu(bool isActive)
+		{
+			_mainMenuObject.SetActive(isActive);
 		}
 	}
 }
