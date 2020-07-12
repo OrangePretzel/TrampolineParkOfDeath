@@ -44,7 +44,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 680fad4ae9d606842af8f042e19f22f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _waveDatas: []
+  _waveDatas:
+  - numEnemies: 2
+  - numEnemies: 4
+  - numEnemies: 7
+  - numEnemies: 9
+  - numEnemies: 12
   _minSpawnPoint: {x: -20, y: 5, z: -20}
   _maxSpawnPoint: {x: 20, y: 10, z: 20}
   _playerSafeAreaRadius: 5
