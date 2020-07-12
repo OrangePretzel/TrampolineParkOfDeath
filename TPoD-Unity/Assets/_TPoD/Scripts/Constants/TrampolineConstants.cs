@@ -15,6 +15,9 @@ namespace TPoD
             public const string VERTICAL_LOOK_AXIS = "VerticalLook";
 
             public const string CHEAT_DEAL_DAMAGE = "CheatDamage";
+
+            public const string SHOOT = "Shoot";
+
         }
 
         public class TagConstants
@@ -25,6 +28,8 @@ namespace TPoD
         public class LayerConstants
         {
             public const string ENEMY_SHOULD_NOT_TOUCH = "EnemyShouldNotTouch";
+            public const string ENEMY_COLLIDER = "EnemyCollider";
+            public const string ENEMY_WEAK_SPOT = "EnemyWeakSpot";
         }
     }
 }

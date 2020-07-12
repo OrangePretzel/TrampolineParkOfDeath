@@ -15,8 +15,8 @@ TagManager:
   - 
   - EnemyShouldNotTouch
   - PlayerGun
-  - 
-  - 
+  - EnemyWeakSpot
+  - EnemyCollider
   - 
   - 
   - 

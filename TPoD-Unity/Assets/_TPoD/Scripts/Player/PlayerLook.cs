@@ -13,6 +13,8 @@ namespace TPoD
         [SerializeField] private float _lookSensitivity;
         [SerializeField] private float _dampValue;
 
+        [SerializeField] private GameObject _verticalRotationContainer;
+
         private IPlayerLookInput _input;
 
         private float _targetVerticalRotation;
@@ -22,7 +24,6 @@ namespace TPoD
         private float _targetHorizontalRotation;
         private float _actualHorizontalRotation;
         private float _horizontalRotationVelocity;
-
 
         /******* Monobehavior Methods *******/
 
@@ -46,7 +47,8 @@ namespace TPoD
             _targetHorizontalRotation += _input.GetHorizontalLook() * _lookSensitivity;
             _actualHorizontalRotation = Mathf.SmoothDamp(_actualHorizontalRotation, _targetHorizontalRotation, ref _horizontalRotationVelocity, _dampValue);
 
-            transform.rotation = Quaternion.Euler(-_actualVerticalRotation, _actualHorizontalRotation, 0);
+            _verticalRotationContainer.transform.localRotation = Quaternion.Euler(-_actualVerticalRotation, 0, 0);
+            transform.rotation = Quaternion.Euler(0, _actualHorizontalRotation, 0);
         }
     }
 }
