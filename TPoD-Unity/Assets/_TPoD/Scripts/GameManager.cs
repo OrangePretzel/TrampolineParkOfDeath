@@ -4,6 +4,7 @@ using UnityEngine;
 using System.Collections;
 using Metamesa.MMUnity.ObjectPooling;
 using UnityEngine.SceneManagement;
+using UnityEditor;
 
 namespace TPoD
 {
@@ -97,8 +98,10 @@ namespace TPoD
 
 			Player.health.onDeath += HandleGameOver;
 			_hud.onReplay += HandleReplay;
+			_hud.onQuit += HandleQuit;
+			_hud.onStartGame += HandlePlayGame;
 
-			StartNewGame();
+			_hud.ToggleMainMenu(true);
 		}
 
 		private void Update()
@@ -131,26 +134,50 @@ namespace TPoD
 			_gameState = new GameState();
 			_gameState.IsPlaying = true;
 
-			Player.health.ToggleInvincibility(true, 1f);
+			Player.transform.position = Vector3.up * 3;
+			Player.health.ToggleInvincibility(true, 3f);
 
 			_waveManager.Clear();
-			_waveManager.StartWave(0);
+			StartCoroutine(StartWaveManagerAfterDelay(2f));
 
 			_hud.ToggleGameOver(false);
+			_hud.ToggleMainMenu(false);
+		}
+
+		private IEnumerator StartWaveManagerAfterDelay(float delaySeconds)
+		{
+			yield return new WaitForSeconds(delaySeconds);
+
+			_waveManager.StartWave(0);
 		}
 
 		public void HandleGameOver(GameObject playerObject)
 		{
 			_gameState.IsPlaying = false;
 			_hud.ToggleGameOver(true);
+			_hud.ToggleMainMenu(false);
 		}
 
 		private void HandleReplay()
 		{
 			_hud.ToggleGameOver(false);
+			_hud.ToggleMainMenu(false);
 			//StartNewGame();
 
 			SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex, LoadSceneMode.Single);
+		}
+
+		private void HandlePlayGame()
+		{
+			StartNewGame();
+		}
+
+		private void HandleQuit()
+		{
+			if (Application.isEditor)
+				Debug.Log("Quitting");
+			else
+				Application.Quit();
 		}
 
 		#endregion
