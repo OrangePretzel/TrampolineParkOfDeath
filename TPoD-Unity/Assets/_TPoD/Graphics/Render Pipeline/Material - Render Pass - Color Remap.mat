@@ -28,7 +28,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ColorRamp:
-        m_Texture: {fileID: 2800000, guid: 8c952ddfc10010a48bb50ebc75866c3f, type: 3}
+        m_Texture: {fileID: 2800000, guid: a29bfae7913e5ea479d818406f3c85d3, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _EmissionMap:
