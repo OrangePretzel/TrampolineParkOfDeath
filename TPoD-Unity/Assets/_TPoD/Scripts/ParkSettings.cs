@@ -10,6 +10,7 @@ namespace TPoD
 		public float TrampolineSize = 1.2f;
 		public int ParkSize = 3;
 		public float ParkSizeF = 3.5f;
+		public float ParkSizeRandomnessF = 0.3f;
 
 		[Header("Boosert Randomization Settings")]
 		public float ProbabilityOfDirectional;		

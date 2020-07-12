@@ -12,7 +12,7 @@ namespace TPoD
 			// Reference: https://www.redblobgames.com/grids/hexagons/
 
 			int parkSize = _parkSettings.ParkSize;
-			float parkSizeF = _parkSettings.ParkSizeF;
+			float parkSizeF = _parkSettings.ParkSizeF + Random.Range(-_parkSettings.ParkSizeRandomnessF, _parkSettings.ParkSizeRandomnessF);
 
 			float hexSize = _parkSettings.TrampolineSize;
 			float hexWidth = Mathf.Sqrt(3) * hexSize;
