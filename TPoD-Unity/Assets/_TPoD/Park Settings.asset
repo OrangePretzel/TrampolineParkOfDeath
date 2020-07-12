@@ -15,6 +15,6 @@ MonoBehaviour:
   TrampolinePrefab: {fileID: 8298976438287256345, guid: 213251291f156184b98053a785c98489,
     type: 3}
   TrampolineSize: 2.4
-  ParkSize: 3
-  ParkSizeF: 3.5
+  ParkSize: 5
+  ParkSizeF: 7
   ProbabilityOfDirectional: 0.5
