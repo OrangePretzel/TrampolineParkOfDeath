@@ -84,6 +84,9 @@ namespace TPoD
 
 		private void OnEnable()
 		{
+			Cursor.visible = false;
+			Cursor.lockState = CursorLockMode.Locked;
+
 			if (!MakeSingleton())
 			{
 				Debug.Log($"Singleton for {nameof(GameManager)} already exists. Destroying self", this);
@@ -131,7 +134,6 @@ namespace TPoD
 		{
 			Cursor.lockState = CursorLockMode.Locked;
 			Cursor.visible = false;
-
 			_gameState = new GameState();
 			_gameState.IsPlaying = true;
 
