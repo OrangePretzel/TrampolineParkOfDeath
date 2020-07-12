@@ -9,6 +9,9 @@ namespace TPoD.UI
 	{
 		public Action onReplay;
 
+		public Action onStartGame;
+		public Action onQuit;
+
 		private const string WAVE_COUNT_FORMAT = "Wave {0}";
 		private const string ENEMY_COUNT_FORMAT = "Enemies Left : {0}";
 
@@ -17,6 +20,7 @@ namespace TPoD.UI
 		[SerializeField] private TextMeshProUGUI _enemyCountText;
 
 		[SerializeField] private GameObject _gameOverObject;
+		[SerializeField] private GameObject _mainMenuObject;
 
 		private void Update()
 		{
@@ -27,6 +31,20 @@ namespace TPoD.UI
 			if (gameState.IsPlaying)
 			{
 				_hudTimer.UpdateTimerText(gameState.Time);
+			}
+
+
+			if (_mainMenuObject.activeSelf)
+			{
+				if (Input.GetButtonDown(TrampolineConstants.InputConstants.REPLAY))
+				{
+					onStartGame?.Invoke();
+				}
+
+				if (Input.GetButtonDown(TrampolineConstants.InputConstants.QUIT))
+				{
+					onQuit?.Invoke();
+				}
 			}
 
 			if (_gameOverObject.activeSelf && Input.GetButtonDown(TrampolineConstants.InputConstants.REPLAY))
