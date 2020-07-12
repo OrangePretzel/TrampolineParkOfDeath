@@ -17,4 +17,4 @@ MonoBehaviour:
   TrampolineSize: 2.4
   ParkSize: 3
   ParkSizeF: 3.5
-  ProbabilityOfDirectional: 0.75
+  ProbabilityOfDirectional: 0.5

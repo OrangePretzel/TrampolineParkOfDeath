@@ -4,7 +4,7 @@ Shader "TPoD/RenderPass/ColorRemap"
 	{
 		_MainTex("Texture", 2D) = "white" {}
 		_ColorRamp("Color Ramp", 2D) = "white" {}
-		_CIndex("CIndex", float) = 0
+		_RemapFactor("Remap Factor", float) = 0.5
 	}
 		SubShader
 	{
@@ -28,7 +28,7 @@ Shader "TPoD/RenderPass/ColorRemap"
 			TEXTURE2D(_ColorRamp);
 			SAMPLER(sampler_ColorRamp);
 
-			float _CIndex;
+			float _RemapFactor;
 
 			struct Attributes
 			{
@@ -60,9 +60,9 @@ Shader "TPoD/RenderPass/ColorRemap"
 				half luminosity = 0.3 * color.r + 0.59 * color.g + 0.11 * color.b;
 
 				half4 remapColor = SAMPLE_TEXTURE2D(_ColorRamp, sampler_ColorRamp, half2(luminosity, 0));
-				// half sceneDepth = LinearEyeDepth(SampleSceneDepth(IN.uv0), _ZBufferParams);
-				// return sceneDepth;
-				return half4(remapColor.xyz, 1);
+
+				half4 outColor = remapColor * _RemapFactor + color * (1 - _RemapFactor);
+				return half4(outColor.xyz, 1);
 			}
 
 			ENDHLSL
