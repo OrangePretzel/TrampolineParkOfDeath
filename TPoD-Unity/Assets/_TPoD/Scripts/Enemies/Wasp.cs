@@ -16,6 +16,11 @@ namespace TPoD
 
 		/******* Monobehavior Methods *******/
 
+		public void Awake()
+		{
+			health.onDamageTaken += animator.HandleDamageTaken;
+		}
+
 		/******* Methods *******/
 		#region IPoolable
 

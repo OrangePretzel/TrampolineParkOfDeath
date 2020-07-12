@@ -9,8 +9,8 @@ namespace TPoD
     {
         /******* Events *******/
 
-        public delegate void OnDamageDone(float damageValue, float newHealth);
-        public event OnDamageDone onDamageDone;
+        public delegate void OnDamageTaken(float damageValue, float newHealth);
+        public event OnDamageTaken onDamageTaken;
 
         public delegate void OnDeath(GameObject gameObject);
         public event OnDeath onDeath;
@@ -37,7 +37,7 @@ namespace TPoD
         public void DealDamage(float damage)
         {
             health -= damage;
-            onDamageDone?.Invoke(damage, health);
+            onDamageTaken?.Invoke(damage, health);
             if (health <= 0f)
             {
                 onDeath?.Invoke(gameObject);

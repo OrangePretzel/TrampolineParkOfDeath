@@ -7,7 +7,7 @@ namespace TPoD.UI
 	public class HUD : MonoBehaviour
 	{
 		private const string WAVE_COUNT_FORMAT = "Wave {0}";
-		private const string ENEMY_COUNT_FORMAT = "Enemy {0}";
+		private const string ENEMY_COUNT_FORMAT = "Enemies Left : {0}";
 
 
 		[SerializeField] private HUDTimer _hudTimer = null;

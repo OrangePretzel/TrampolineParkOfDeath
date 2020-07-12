@@ -33,6 +33,11 @@ namespace TPoD
 			_gunParticles.Play();
 		}
 
+		public void HandleDamageTaken(float damageAmount, float newHealth)
+		{
+			// TODO Alosh (Alex + Josh)
+		}
+
 		#region Animation Functions
 
 		public void Shoot()
