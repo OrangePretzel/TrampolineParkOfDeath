@@ -89,5 +89,5 @@ Material:
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
     - _X0Color: {r: 1, g: 1, b: 1, a: 1}
     - _X1Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Y0Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Y0Color: {r: 1, g: 0.9780377, b: 0, a: 1}
     - _Y1Color: {r: 1, g: 1, b: 1, a: 1}
