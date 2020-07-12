@@ -59,7 +59,7 @@ Shader "TPoD/RenderPass/ColorRemap"
 				half4 color = SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex, IN.uv0.xy);
 				half luminosity = 0.3 * color.r + 0.59 * color.g + 0.11 * color.b;
 
-				half4 remapColor = SAMPLE_TEXTURE2D(_ColorRamp, sampler_ColorRamp, half2(luminosity, 0));
+				half4 remapColor = SAMPLE_TEXTURE2D(_ColorRamp, sampler_ColorRamp, half2(luminosity, color.b));
 
 				half4 outColor = remapColor * _RemapFactor + color * (1 - _RemapFactor);
 				return half4(outColor.xyz, 1);
