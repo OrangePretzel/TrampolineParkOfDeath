@@ -1,5 +1,6 @@
 ﻿using Sirenix.OdinInspector;
 using UnityEngine;
+using TPoD.UI;
 
 namespace TPoD
 {
@@ -11,6 +12,10 @@ namespace TPoD
 
 		public float Time;
 		public int Score;
+
+		// Wave Stuff
+		public int CurrentWaveIndex;
+		public int NumEnemiesRemaining;
 
 		public void UpdateGameState(float deltaTime)
 		{
@@ -33,10 +38,13 @@ namespace TPoD
 
 	public class GameManager : MonoBehaviour
 	{
+		[SerializeField] private HUD _hud;
 		[SerializeField] private ParkBuilder _parkBuilder = null;
 
 		[SerializeField] private GameObject _playerObject = null;
 		[SerializeField] [ReadOnly] private GameState _gameState = null;
+		[SerializeField] private WaveManager _waveManager;
+
 		public static GameState GameState
 		{
 			get
@@ -48,10 +56,6 @@ namespace TPoD
 		}
 
 		public Transform PlayerTransform => _playerObject.transform;
-
-		[Header("Object Pools")]
-		[SerializeField] private WaspObjectPool _waspObjectPool = null;
-		public WaspObjectPool WaspObjectPool => _waspObjectPool;
 
 		#region Singleton
 
@@ -78,6 +82,9 @@ namespace TPoD
 			}
 
 			SetupPark();
+
+			_waveManager.onEnemyCountChanged += _hud.SetEnemyCount;
+			_waveManager.onWaveStarted += _hud.SetWaveCount;
 
 			StartNewGame();
 		}
@@ -109,6 +116,8 @@ namespace TPoD
 		{
 			_gameState = new GameState();
 			_gameState.IsPlaying = true;
+
+			_waveManager.StartWave(0);
 		}
 
 		#endregion
