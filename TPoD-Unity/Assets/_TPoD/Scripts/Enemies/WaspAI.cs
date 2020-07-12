@@ -4,29 +4,29 @@ using UnityEngine;
 
 namespace TPoD
 {
-    public class BeeAIState : IAIState
+    public class WaspAIState : IAIState
     {
-        public BeeAIAction action;
+        public WaspAIAction action;
 
         public void Reset()
         {
-            action = BeeAIAction.None;
+            action = WaspAIAction.None;
         }
 
-        public BeeAIState() 
+        public WaspAIState() 
         {
-            this.action = BeeAIAction.None; 
+            this.action = WaspAIAction.None; 
         }
     }
 
-    public enum BeeAIAction
+    public enum WaspAIAction
     {
         None,
         Move,
         Attack
     }
 
-    public class BeeAI : AbstractStateAI
+    public class WaspAI : AbstractStateAI
     {
 
         /******* Events *******/
@@ -43,26 +43,26 @@ namespace TPoD
 
         [SerializeField] private float _timeToMove;
 
-        private BeeAIState _aiState;
+        private WaspAIState _aiState;
         protected override IAIState aiState => _aiState;
 
         /******* Monobehavior Methods *******/
 
         public void Awake()
         {
-            _aiState = new BeeAIState();
+            _aiState = new WaspAIState();
             StartAI();
         }
 
         /******* Methods *******/
         public override IEnumerator GetEnumeratorForState(IAIState currentState)
         {
-            switch(((BeeAIState)currentState).action)
+            switch(((WaspAIState)currentState).action)
             {
-                case BeeAIAction.Move:
+                case WaspAIAction.Move:
                     yield return MoveAction();
                     break;
-                case BeeAIAction.Attack:
+                case WaspAIAction.Attack:
                     yield return AttackAction();
                     break;
             }
@@ -118,15 +118,15 @@ namespace TPoD
 
         public override IAIState GetNextState(IAIState currentState)
         {
-            BeeAIState beeState = (BeeAIState)currentState;
+            WaspAIState beeState = (WaspAIState)currentState;
             switch(beeState.action)
             {
-                case BeeAIAction.Move:
-                    beeState.action = BeeAIAction.Attack;
+                case WaspAIAction.Move:
+                    beeState.action = WaspAIAction.Attack;
                     break;
-                case BeeAIAction.None:
-                case BeeAIAction.Attack:
-                    beeState.action = BeeAIAction.Move;
+                case WaspAIAction.None:
+                case WaspAIAction.Attack:
+                    beeState.action = WaspAIAction.Move;
                     break;
             }
             return beeState;
