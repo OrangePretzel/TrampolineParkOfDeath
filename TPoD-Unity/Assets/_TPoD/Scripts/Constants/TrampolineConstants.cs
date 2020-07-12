@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace TPoD
 {
-    public class TrampolineConstants : MonoBehaviour
+	public class TrampolineConstants : MonoBehaviour
     {
         public class InputConstants
         {
